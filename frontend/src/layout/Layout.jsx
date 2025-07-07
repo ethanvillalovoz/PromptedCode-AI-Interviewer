@@ -1,5 +1,5 @@
 import "react"
-import { SingedIn, SignedOut, UserButton, SignedIn } from "@clerk/clerk-react"
+import { SignedOut, UserButton, SignedIn } from "@clerk/clerk-react"
 import { Outlet, Link, Navigate } from "react-router-dom"
 
 export function Layout() {
