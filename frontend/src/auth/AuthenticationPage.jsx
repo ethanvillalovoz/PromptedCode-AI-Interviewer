@@ -5,7 +5,7 @@ export function AuthenticationPage() {
   return (
     <div className="auth-container">
       <SignedOut>
-        <SignIn path="/sign-in" routing="path"/>
+        <SignIn path="/sign-in" routing="path" />
         <SignUp path="/sign-up" routing="path" />
       </SignedOut>
       <SignedIn>
