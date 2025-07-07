@@ -8,7 +8,7 @@ Base = declarative_base()
 
 class Challenge(Base):
     __tablename__ = 'challenges'
-    
+
     id = Column(Integer, primary_key=True)
     difficulty = Column(String, nullable=False)
     date_created = Column(DateTime, default=datetime.now)
