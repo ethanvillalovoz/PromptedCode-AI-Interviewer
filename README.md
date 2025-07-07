@@ -18,3 +18,6 @@ cd frontend
 npm install react-router-dom@6 @clerk/clerk-react
 
 New project name: PromptedCode
+
+
+huggingface-cli login

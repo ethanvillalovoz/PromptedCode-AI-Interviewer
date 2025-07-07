@@ -7,3 +7,6 @@ transformers
 torch
 huggingface-hub
 Pillow
+torch
+torchvision
+torchaudio
