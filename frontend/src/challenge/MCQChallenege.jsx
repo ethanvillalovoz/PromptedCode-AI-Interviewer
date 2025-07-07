@@ -1,9 +1,10 @@
 import "react"
 import { useState } from "react"
 
-export function MCQChallenge({ challenge, showExplanation = false }) {
+export function MCQChallenge({ challenge, showExplanation = false, onCorrect }) {
   const [selectedOption, setSelectedOption] = useState(null)
   const [shouldShowExplanation, setShouldShowExplanation] = useState(showExplanation)
+  const [rating, setRating] = useState(null)
 
   const options =
     typeof challenge.options === "string"
@@ -16,6 +17,9 @@ export function MCQChallenge({ challenge, showExplanation = false }) {
     }
     setSelectedOption(index)
     setShouldShowExplanation(true)
+    if (index === challenge.correct_answer_id && onCorrect) {
+      onCorrect()
+    }
   }
 
   const getOptionClass = (index) => {
@@ -43,6 +47,10 @@ export function MCQChallenge({ challenge, showExplanation = false }) {
             className={getOptionClass(index)}
             key={index}
             onClick={() => handleOptionSelect(index)}
+            tabIndex={0}
+            role="button"
+            aria-pressed={selectedOption === index}
+            style={{ outline: "none" }}
           >
             {option}
           </div>
@@ -54,6 +62,19 @@ export function MCQChallenge({ challenge, showExplanation = false }) {
           <p>{challenge.explanation}</p>
         </div>
       )}
+      <div className="rating">
+        <span>Rate this challenge:</span>
+        <button
+          aria-label="Thumbs up"
+          onClick={() => setRating("up")}
+          style={{ color: rating === "up" ? "#43a047" : undefined }}
+        >👍</button>
+        <button
+          aria-label="Thumbs down"
+          onClick={() => setRating("down")}
+          style={{ color: rating === "down" ? "#e53935" : undefined }}
+        >👎</button>
+      </div>
     </div>
   )
 }

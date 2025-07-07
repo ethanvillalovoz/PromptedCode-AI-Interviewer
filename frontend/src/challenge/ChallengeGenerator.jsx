@@ -28,7 +28,7 @@ export function ChallengeGenerator() {
   const generateChallenge = async () => {
     setIsLoading(true)
     setError(null)
-
+    setChallenge(null)
     try {
       const data = await makeRequest("generate-challenge", {
         method: "POST",
@@ -50,11 +50,19 @@ export function ChallengeGenerator() {
     return resetDate
   }
 
+  // Quota progress bar calculation
+  const quotaMax = 50
+  const quotaUsed = quotaMax - (quota?.quota_remaining || 0)
+  const quotaPercent = Math.min(100, Math.round((quotaUsed / quotaMax) * 100))
+
   return (
     <div className="challenge-container">
       <h2 style={{ textAlign: "center", marginBottom: "2rem" }}>AI Interview Practice</h2>
       <div className="quota-display">
         <p>Challenge remaining today: {quota?.quota_remaining || 0}</p>
+        <div className="quota-progress">
+          <div className="quota-progress-bar" style={{ width: `${100 - quotaPercent}%` }}></div>
+        </div>
         {quota?.quota_remaining === 0 && (
           <p>Next reset: {getNextResetTime()?.toLocaleString()}</p>
         )}
@@ -83,6 +91,9 @@ export function ChallengeGenerator() {
         <div className="error-message">
           <p>{error}</p>
         </div>
+      )}
+      {isLoading && (
+        <div className="challenge-card skeleton" style={{ height: 200, marginTop: 32 }}></div>
       )}
       {challenge && (
         <MCQChallenge challenge={challenge} />
