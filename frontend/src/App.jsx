@@ -1,4 +1,4 @@
-import { ClerkProviderWithRoutes } from './auth/ClerkProviderWithRoutes.jsx'
+import ClerkProviderWithRoutes from './auth/ClerkProviderWithRoutes.jsx'
 import { Routes, Route } from 'react-router-dom'
 import { Layout } from './layout/Layout.jsx'
 import { ChallengeGenerator } from './challenge/ChallengeGenerator.jsx'
