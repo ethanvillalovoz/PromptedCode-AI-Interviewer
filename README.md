@@ -4,3 +4,17 @@ A full-stack application built with FastAPI and React that generates coding chal
 Choice of model: https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct
 
 conda create -n llm-codegen python=3.13
+
+Install Nodejs: https://nodejs.org/en
+Clerk: https://clerk.com/billing?utm_source=rob-shocks&utm_medium=youtube&utm_campaign=billing-demo&dub_id=neMs6A8Ft7LxcTEQ
+
+npm create vite@latest frontend -- --template react
+
+  cd frontend
+  npm install
+  npm run dev
+
+cd frontend 
+npm install react-router-dom@6 @clerk/clerk-react
+
+New project name: PromptedCode
