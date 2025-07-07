@@ -1,6 +1,8 @@
 from fastapi import APIRouter, Request, HTTPException, Depends
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
+
+from ..ai_generator import generate_challenge_with_llm
 from ..database.db import (
     get_challenge_quota,
     create_challenge,
@@ -41,15 +43,31 @@ async def generate_challenge(
 
         if quota.quota_remaining <= 0:
             raise HTTPException(status_code=429, detail="Quota exhausted")
-        
-        challenge_data = None
 
-        # TODO: generate challenge using LLM
+        challenge_data = generate_challenge_with_llm(request.difficulty)
+
+        new_challenge = create_challenge(
+            db=db,
+            difficulty=request.difficulty,
+            created_by=user_id,
+            title=challenge_data["title"],
+            options=json.dumps(challenge_data["options"]),
+            correct_answer_id=challenge_data["correct_answer_id"],
+            explanation=challenge_data["explanation"]
+        )
 
         quota.quota_remaining -= 1
         db.commit()
 
-        return challenge_data
+        return {
+            "id": new_challenge.id,
+            "difficulty": request.difficulty,
+            "title": new_challenge.title,
+            "options": json.loads(new_challenge.options),
+            "correct_answer_id": new_challenge.correct_answer_id,
+            "explanation": new_challenge.explanation,
+            "timestamp": new_challenge.date_created.isoformat()
+        }
     
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
