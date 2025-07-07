@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+sqlalchemy
+python-dotenv
+clerk-sdk-python
+transformers
+torch
+huggingface-hub
+Pillow
