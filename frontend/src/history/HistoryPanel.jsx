@@ -3,16 +3,23 @@ import { useState, useEffect } from "react"
 import { MCQChallenge } from "../challenge/MCQChallenege.jsx"
 import { useApi } from "../utils/api.js"
 
+// HistoryPanel displays the user's past coding challenges
 export function HistoryPanel() {
+  // State to store the list of challenges in history
   const [history, setHistory] = useState([])
+  // State to track loading status
   const [isLoading, setIsLoading] = useState(true)
+  // State to store any error messages
   const [error, setError] = useState(null)
+  // Custom API hook for making backend requests
   const { makeRequest } = useApi()
 
+  // Fetch the user's challenge history when the component mounts
   useEffect(() => {
     fetchHistory()
   }, [])
 
+  // Fetch the challenge history from the backend
   const fetchHistory = async () => {
     setIsLoading(true)
     setError(null)
@@ -27,6 +34,7 @@ export function HistoryPanel() {
     }
   }
 
+  // Show loading state while fetching history
   if (isLoading) {
     return (
       <div className="Loading">
@@ -35,6 +43,7 @@ export function HistoryPanel() {
     )
   }
 
+  // Show error message if fetching history fails
   if (error) {
     return (
       <div className="error-message">
@@ -44,6 +53,7 @@ export function HistoryPanel() {
     )
   }
 
+  // Render the list of past challenges or a message if none exist
   return (
     <div className="history-panel">
       <h2>Challenge History</h2>

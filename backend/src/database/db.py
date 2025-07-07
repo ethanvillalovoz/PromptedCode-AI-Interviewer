@@ -3,9 +3,15 @@ from datetime import datetime, timedelta
 from . import models
 
 def get_challenge_quota(db: Session, user_id: str):
+    """
+    Retrieve the challenge quota record for a given user.
+    """
     return db.query(models.ChallengeQuota).filter(models.ChallengeQuota.user_id == user_id).first()
 
 def create_challenge_quota(db: Session, user_id: str):
+    """
+    Create a new challenge quota record for a user.
+    """
     db_quota = models.ChallengeQuota(user_id=user_id)
     db.add(db_quota)
     db.commit()
@@ -13,6 +19,9 @@ def create_challenge_quota(db: Session, user_id: str):
     return db_quota
 
 def reset_quota_if_needed(db: Session, quota: models.ChallengeQuota):
+    """
+    Reset the user's quota if 24 hours have passed since the last reset.
+    """
     now = datetime.now()
     if now - quota.last_reset_date >= timedelta(hours=24):
         quota.quota_remaining = 50
@@ -30,6 +39,9 @@ def create_challenge(
     correct_answer_id: int,
     explanation: str
 ):
+    """
+    Create and store a new coding challenge in the database.
+    """
     db_challenge = models.Challenge(
         difficulty=difficulty,
         created_by=created_by,
@@ -44,4 +56,7 @@ def create_challenge(
     return db_challenge
 
 def get_user_challenges(db: Session, user_id: str):
+    """
+    Retrieve all challenges created by a specific user.
+    """
     return db.query(models.Challenge).filter(models.Challenge.created_by == user_id).all()

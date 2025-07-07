@@ -1,3 +1,4 @@
+/* Root CSS variables for consistent theming */
 :root {
   --primary-color: #2563eb;
   --error-color: #dc2626;
@@ -6,12 +7,14 @@
   --border-color: #e5e7eb;
 }
 
+/* Reset and box-sizing for all elements */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Base body styling */
 body {
   margin: 0;
   padding: 0;
@@ -19,6 +22,7 @@ body {
   background-color: var(--bg-color);
 }
 
+/* Layout container for the app */
 .app-layout {
   min-height: 100vh;
   display: flex;
@@ -26,6 +30,7 @@ body {
   width: 100%;
 }
 
+/* Header styling */
 .app-header {
   background-color: white;
   padding: 1rem;
@@ -33,6 +38,7 @@ body {
   width: 100%;
 }
 
+/* Header content alignment */
 .header-content {
   width: 100%;
   max-width: 1200px;
@@ -48,6 +54,7 @@ body {
   color: var(--text-color);
 }
 
+/* Navigation bar styling */
 .header-content nav {
   display: flex;
   gap: 1.5rem;
@@ -65,6 +72,7 @@ body {
   color: var(--primary-color);
 }
 
+/* Main content area */
 .app-main {
   flex: 1;
   width: 100%;
@@ -73,6 +81,7 @@ body {
   padding: 2rem 1rem;
 }
 
+/* Authentication container styling */
 .auth-container {
   max-width: 400px;
   margin: 2rem auto;
@@ -84,6 +93,7 @@ body {
   align-items: center;
 }
 
+/* Challenge container styling */
 .challenge-container {
   background-color: white;
   padding: 2rem;
@@ -92,6 +102,7 @@ body {
   width: 100%;
 }
 
+/* Button styling for generating challenges */
 .generate-button {
   background-color: var(--primary-color);
   color: white;
@@ -112,6 +123,7 @@ body {
   cursor: not-allowed;
 }
 
+/* Error message styling */
 .error-message {
   color: var(--error-color);
   margin: 1rem 0;
@@ -120,6 +132,7 @@ body {
   border-radius: 0.375rem;
 }
 
+/* Challenge display area */
 .challenge-display {
   margin-top: 2rem;
   padding: 1.5rem;
@@ -127,6 +140,7 @@ body {
   border-radius: 0.375rem;
 }
 
+/* History panel styling */
 .history-panel {
   background-color: white;
   padding: 2rem;
@@ -135,30 +149,35 @@ body {
   width: 100%;
 }
 
+/* List of history items */
 .history-list {
   display: grid;
   gap: 1.5rem;
   margin-top: 1.5rem;
 }
 
+/* Individual history item styling */
 .history-item {
   padding: 1.5rem;
   background-color: var(--bg-color);
   border-radius: 0.375rem;
 }
 
+/* Timestamp styling for history */
 .timestamp {
   color: #6b7280;
   font-size: 0.875rem;
   margin-top: 0.5rem;
 }
 
+/* Loading state styling */
 .loading {
   text-align: center;
   color: var(--text-color);
   padding: 2rem;
 }
 
+/* Waitlist message styling */
 .waitlist-message {
   background-color: #fef3c7;
   color: #92400e;
@@ -167,12 +186,14 @@ body {
   margin: 1rem 0;
 }
 
+/* Redirect message styling */
 .redirect-message {
   text-align: center;
   color: var(--text-color);
   margin-top: 1rem;
 }
 
+/* Clerk modal overlay styling */
 .clerk-modal {
   display: flex;
   justify-content: center;
@@ -186,6 +207,7 @@ body {
   z-index: 1000;
 }
 
+/* Clerk modal content styling */
 .clerk-modal-content {
   background-color: white;
   padding: 2rem;
@@ -195,6 +217,7 @@ body {
   width: 100%;
 }
 
+/* Quota display styling */
 .quota-display {
   background-color: #f8fafc;
   padding: 1rem;
@@ -208,6 +231,7 @@ body {
   color: var(--text-color);
 }
 
+/* Difficulty selector styling */
 .difficulty-selector {
   margin: 1rem 0;
 }
@@ -255,8 +279,11 @@ body {
   animation: fadeIn 0.7s cubic-bezier(0.4,0,0.2,1);
 }
 
+/* Difficulty badge styling with color and icon */
 .difficulty-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
   padding: 0.3em 1em;
   border-radius: 12px;
   font-size: 0.95em;
@@ -267,13 +294,6 @@ body {
 }
 .difficulty-badge.medium { background: #ff9800; }
 .difficulty-badge.hard { background: #d32f2f; }
-
-/* Difficulty badge with icon */
-.difficulty-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
-}
 .difficulty-badge.easy::before { content: "🟢"; }
 .difficulty-badge.medium::before { content: "🟠"; }
 .difficulty-badge.hard::before { content: "🔴"; }
@@ -310,6 +330,7 @@ body {
   border-radius: 6px;
 }
 
+/* History note styling */
 .history-note {
   margin-top: 1rem;
   padding: 0.75rem;
@@ -350,7 +371,7 @@ body {
   z-index: 9999;
 }
 
-/* Responsive design */
+/* Responsive design for mobile screens */
 @media (max-width: 700px) {
   .challenge-card, .challenge-container, .history-panel {
     padding: 1rem;
@@ -361,7 +382,7 @@ body {
   }
 }
 
-/* Dark mode support */
+/* Dark mode support using body.dark class */
 body.dark {
   --primary-color: #60a5fa;
   --error-color: #f87171;
@@ -376,7 +397,7 @@ body.dark .challenge-card, body.dark .challenge-container, body.dark .history-pa
   border-color: #27272a;
 }
 
-/* Skeleton loader */
+/* Skeleton loader for loading states */
 .skeleton {
   background: linear-gradient(90deg, #f3f3f3 25%, #e0e0e0 37%, #f3f3f3 63%);
   background-size: 400% 100%;
@@ -388,7 +409,7 @@ body.dark .challenge-card, body.dark .challenge-container, body.dark .history-pa
   100% { background-position: 0 50%; }
 }
 
-/* Feedback/Rating system */
+/* Feedback/Rating system styling */
 .rating {
   display: flex;
   gap: 0.5em;

@@ -1,24 +1,28 @@
+/* Set base font and rendering for the app */
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;   /* Smoother fonts on WebKit browsers */
+  -moz-osx-font-smoothing: grayscale;    /* Smoother fonts on macOS Firefox */
 }
 
+/* Remove default margin and set minimum size for the body */
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
 }
 
+/* Inherit font and add pointer cursor for all buttons */
 button {
   font-family: inherit;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s; /* Smooth transitions for button interactions */
 }
 
+/* Add a visible outline for accessibility when a button is focused */
 button:focus,
 button:focus-visible {
   outline: 2px solid var(--primary-color);

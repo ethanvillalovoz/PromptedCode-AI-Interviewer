@@ -1,27 +1,36 @@
 import "react"
 import { useState } from "react"
 
+// MCQChallenge displays a multiple-choice coding challenge card
 export function MCQChallenge({ challenge, showExplanation = false, onCorrect }) {
+  // State to track which option the user selected
   const [selectedOption, setSelectedOption] = useState(null)
+  // State to control whether the explanation is shown
   const [shouldShowExplanation, setShouldShowExplanation] = useState(showExplanation)
+  // State for user rating (thumbs up/down)
   const [rating, setRating] = useState(null)
 
+  // Parse options if they are stored as a JSON string
   const options =
     typeof challenge.options === "string"
       ? JSON.parse(challenge.options)
       : challenge.options
 
+  // Handle when a user selects an option
   const handleOptionSelect = (index) => {
+    // Prevent changing answer after selection
     if (selectedOption !== null) {
       return
     }
     setSelectedOption(index)
     setShouldShowExplanation(true)
+    // Call onCorrect callback if the correct answer is selected
     if (index === challenge.correct_answer_id && onCorrect) {
       onCorrect()
     }
   }
 
+  // Determine the CSS class for each option based on selection and correctness
   const getOptionClass = (index) => {
     if (selectedOption === null) {
       return "option"
@@ -37,10 +46,13 @@ export function MCQChallenge({ challenge, showExplanation = false, onCorrect }) 
 
   return (
     <div className="challenge-card">
+      {/* Difficulty badge */}
       <span className={`difficulty-badge ${challenge.difficulty}`}>
         {challenge.difficulty.charAt(0).toUpperCase() + challenge.difficulty.slice(1)}
       </span>
+      {/* Challenge title */}
       <h3 className="challenge-title">{challenge.title}</h3>
+      {/* Render all options */}
       <div className="options">
         {options.map((option, index) => (
           <div
@@ -56,12 +68,14 @@ export function MCQChallenge({ challenge, showExplanation = false, onCorrect }) 
           </div>
         ))}
       </div>
+      {/* Show explanation after an option is selected */}
       {shouldShowExplanation && selectedOption !== null && (
         <div className="explanation">
           <h4>Explanation</h4>
           <p>{challenge.explanation}</p>
         </div>
       )}
+      {/* Rating buttons for user feedback */}
       <div className="rating">
         <span>Rate this challenge:</span>
         <button

@@ -3,19 +3,25 @@ import { useState, useEffect } from "react"
 import { MCQChallenge } from "./MCQChallenege.jsx"
 import { useApi } from "../utils/api.js"
 
+// ChallengeGenerator is the main component for generating and displaying coding challenges
 export function ChallengeGenerator() {
+  // State for the current challenge, loading status, and error messages
   const [challenge, setChallenge] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
 
+  // Custom API hook for making backend requests
   const { makeRequest } = useApi()
+  // State for selected difficulty and user quota
   const [difficulty, setDifficulty] = useState("easy")
   const [quota, setQuota] = useState(null)
 
+  // Fetch the user's quota when the component mounts
   useEffect(() => {
     fetchQuota()
   }, [])
 
+  // Fetch the current quota from the backend
   const fetchQuota = async () => {
     try {
       const data = await makeRequest("quota")
@@ -25,6 +31,7 @@ export function ChallengeGenerator() {
     }
   }
 
+  // Generate a new challenge based on the selected difficulty
   const generateChallenge = async () => {
     setIsLoading(true)
     setError(null)
@@ -43,6 +50,7 @@ export function ChallengeGenerator() {
     }
   }
 
+  // Calculate the next quota reset time (24 hours after last reset)
   const getNextResetTime = () => {
     if (!quota?.last_reset_data) return null
     const resetDate = new Date(quota.last_reset_data)
@@ -57,7 +65,9 @@ export function ChallengeGenerator() {
 
   return (
     <div className="challenge-container">
+      {/* Page title */}
       <h2 style={{ textAlign: "center", marginBottom: "2rem" }}>AI Interview Practice</h2>
+      {/* Quota display and progress bar */}
       <div className="quota-display">
         <p>Challenge remaining today: {quota?.quota_remaining || 0}</p>
         <div className="quota-progress">
@@ -67,6 +77,7 @@ export function ChallengeGenerator() {
           <p>Next reset: {getNextResetTime()?.toLocaleString()}</p>
         )}
       </div>
+      {/* Difficulty selector */}
       <div className="difficulty-selector">
         <label htmlFor="difficulty">Select Difficulty:</label>
         <select
@@ -80,6 +91,7 @@ export function ChallengeGenerator() {
           <option value="hard">Hard</option>
         </select>
       </div>
+      {/* Generate challenge button */}
       <button
         onClick={generateChallenge}
         disabled={isLoading || quota?.quota_remaining === 0}
@@ -87,14 +99,17 @@ export function ChallengeGenerator() {
       >
         {isLoading ? "Generating..." : "Generate Challenge"}
       </button>
+      {/* Error message display */}
       {error && (
         <div className="error-message">
           <p>{error}</p>
         </div>
       )}
+      {/* Loading skeleton while generating */}
       {isLoading && (
         <div className="challenge-card skeleton" style={{ height: 200, marginTop: 32 }}></div>
       )}
+      {/* Render the challenge if available */}
       {challenge && (
         <MCQChallenge challenge={challenge} />
       )}

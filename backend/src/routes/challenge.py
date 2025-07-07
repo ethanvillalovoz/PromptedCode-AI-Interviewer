@@ -18,6 +18,9 @@ from datetime import datetime
 router = APIRouter()
 
 class ChallengeRequest(BaseModel):
+    """
+    Pydantic model for validating challenge generation requests.
+    """
     difficulty: str
 
     class Config:
@@ -33,20 +36,30 @@ async def generate_challenge(
     request_obj: Request,
     db: Session = Depends(get_db)
 ):
+    """
+    Endpoint to generate a new coding challenge for the authenticated user.
+    Checks and updates the user's quota, generates a challenge using the LLM,
+    stores it in the database, and returns the challenge data.
+    """
     try:
+        # Authenticate user and get user_id
         user_details = authenticate_and_get_user_details(request_obj)
         user_id = user_details.get("user_id")
         
+        # Get or create the user's quota record, and reset if needed
         quota = get_challenge_quota(db, user_id)
         if not quota:
             quota = create_challenge_quota(db, user_id)
         quota = reset_quota_if_needed(db, quota)
 
+        # Check if user has quota remaining
         if quota.quota_remaining <= 0:
             raise HTTPException(status_code=429, detail="Quota exhausted")
 
+        # Generate a challenge using the LLM
         challenge_data = generate_challenge_with_llm(request.difficulty)
 
+        # Store the new challenge in the database
         new_challenge = create_challenge(
             db=db,
             difficulty=request.difficulty,
@@ -57,9 +70,11 @@ async def generate_challenge(
             explanation=challenge_data["explanation"]
         )
 
+        # Decrement the user's quota and commit changes
         quota.quota_remaining -= 1
         db.commit()
 
+        # Return the challenge data to the frontend
         return {
             "id": new_challenge.id,
             "difficulty": request.difficulty,
@@ -78,6 +93,9 @@ async def my_history(
     request: Request,
     db: Session = Depends(get_db)
 ):
+    """
+    Endpoint to retrieve the authenticated user's challenge history.
+    """
     user_details = authenticate_and_get_user_details(request)
     user_id = user_details.get("user_id")
 
@@ -89,11 +107,16 @@ async def get_quota(
     request: Request,
     db: Session = Depends(get_db)
 ):
+    """
+    Endpoint to retrieve the authenticated user's current challenge quota.
+    Resets the quota if 24 hours have passed since the last reset.
+    """
     user_details = authenticate_and_get_user_details(request)
     user_id = user_details.get("user_id")
 
     quota = get_challenge_quota(db, user_id)
     if not quota:
+        # If no quota record exists, return default values
         return {
             "user_id": user_id,
             "quota_remaining": 0,
