@@ -52,15 +52,13 @@ export function ChallengeGenerator() {
 
   return (
     <div className="challenge-container">
-      <h2>Coding Challenge Generator</h2>
-
+      <h2 style={{ textAlign: "center", marginBottom: "2rem" }}>AI Interview Practice</h2>
       <div className="quota-display">
         <p>Challenge remaining today: {quota?.quota_remaining || 0}</p>
         {quota?.quota_remaining === 0 && (
           <p>Next reset: {getNextResetTime()?.toLocaleString()}</p>
         )}
       </div>
-
       <div className="difficulty-selector">
         <label htmlFor="difficulty">Select Difficulty:</label>
         <select
@@ -74,21 +72,18 @@ export function ChallengeGenerator() {
           <option value="hard">Hard</option>
         </select>
       </div>
-
       <button
         onClick={generateChallenge}
-        disabled={false}
+        disabled={isLoading || quota?.quota_remaining === 0}
         className="generate-button"
       >
         {isLoading ? "Generating..." : "Generate Challenge"}
       </button>
-
       {error && (
         <div className="error-message">
           <p>{error}</p>
         </div>
       )}
-
       {challenge && (
         <MCQChallenge challenge={challenge} />
       )}

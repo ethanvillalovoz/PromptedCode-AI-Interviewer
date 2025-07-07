@@ -235,65 +235,60 @@ body {
   cursor: not-allowed;
 }
 
+/* Challenge Card Enhancements */
+.challenge-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 600px;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.difficulty-badge {
+  display: inline-block;
+  padding: 0.3em 1em;
+  border-radius: 12px;
+  font-size: 0.95em;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 1em;
+  background: #1976d2;
+}
+.difficulty-badge.medium { background: #ff9800; }
+.difficulty-badge.hard { background: #d32f2f; }
+
+/* Option and Explanation Enhancements */
 .options {
-  margin: 1rem 0;
-  display: grid;
-  gap: 0.75rem;
+  margin: 1.5em 0;
 }
-
 .option {
-  padding: 1rem;
-  background-color: #f8fafc;
-  border: 2px solid var(--border-color);
-  border-radius: 0.375rem;
-  font-family: monospace;
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 1em;
+  margin-bottom: 1em;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s, box-shadow 0.2s;
+  border: 2px solid transparent;
 }
-
 .option:hover {
-  background-color: #f1f5f9;
-  border-color: var(--primary-color);
+  background: #e3f2fd;
 }
-
-.option.selected {
-  background-color: #e0f2fe;
-  border-color: var(--primary-color);
-}
-
 .option.correct {
-  background-color: #dcfce7;
-  border-color: #22c55e;
+  border-color: #43a047;
+  background: #e8f5e9;
 }
-
 .option.incorrect {
-  background-color: #fee2e2;
-  border-color: var(--error-color);
+  border-color: #e53935;
+  background: #ffebee;
 }
-
 .explanation {
-  margin-top: 1.5rem;
-  padding: 1rem;
-  background-color: #f8fafc;
-  border-radius: 0.375rem;
-  border: 1px solid var(--border-color);
-}
-
-.explanation h4 {
-  color: var(--text-color);
-  margin-bottom: 0.5rem;
-}
-
-.explanation p {
-  color: var(--text-color);
-  line-height: 1.5;
-}
-
-.challenge-title {
-  font-size: 1.1rem;
-  font-weight: 500;
-  margin: 1rem 0;
-  color: var(--text-color);
+  background: #f1f8e9;
+  border-left: 4px solid #43a047;
+  padding: 1em;
+  margin-top: 1.5em;
+  border-radius: 6px;
 }
 
 .history-note {

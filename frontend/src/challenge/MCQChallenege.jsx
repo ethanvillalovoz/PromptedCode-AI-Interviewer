@@ -32,11 +32,11 @@ export function MCQChallenge({ challenge, showExplanation = false }) {
   }
 
   return (
-    <div className="challenge-display">
-      <p>
-        <strong>Difficulty</strong>: {challenge.difficulty}
-      </p>
-      <p className="challenge-title">{challenge.title}</p>
+    <div className="challenge-card">
+      <span className={`difficulty-badge ${challenge.difficulty}`}>
+        {challenge.difficulty.charAt(0).toUpperCase() + challenge.difficulty.slice(1)}
+      </span>
+      <h3 className="challenge-title">{challenge.title}</h3>
       <div className="options">
         {options.map((option, index) => (
           <div
@@ -48,7 +48,6 @@ export function MCQChallenge({ challenge, showExplanation = false }) {
           </div>
         ))}
       </div>
-
       {shouldShowExplanation && selectedOption !== null && (
         <div className="explanation">
           <h4>Explanation</h4>

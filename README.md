@@ -1,5 +1,6 @@
-# llm-coding-challenge-generator
-A full-stack application built with FastAPI and React that generates coding challenges based on user-selected difficulty using a large language model (LLM).
+# PromptedCode
+
+An AI-powered coding interview prep tool. This full-stack application, built with FastAPI and React, generates coding challenges of varying difficulty using a large language model (LLM). Practice, track your progress, and get ready for your next technical interview!
 
 Choice of model: https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct
 
