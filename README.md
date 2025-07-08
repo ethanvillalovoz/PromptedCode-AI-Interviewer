@@ -57,8 +57,8 @@ PromptedCode is a full-stack web application designed to help users prepare for 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/ethanvillalovoz/llm-coding-challenge-generator.git
-cd llm-coding-challenge-generator
+git clone https://github.com/ethanvillalovoz/PromptedCode-AI-Interviewer.git
+cd PromptedCode-AI-Interviewer
 ```
 
 ### 2. Backend Setup
