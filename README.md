@@ -1,4 +1,4 @@
-# PromptedCode
+# CodePrep.AI
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/ethanvillalovoz/llm-coding-challenge-generator/actions)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -9,20 +9,19 @@
 
 ## 🚀 Introduction
 
-**PromptedCode** is an AI-powered coding interview prep tool. Instantly generate coding challenges of varying difficulty, practice with real-time feedback, and track your progress—all in one place.
+**CodePrep.AI** is an AI-powered coding interview prep tool. Instantly generate coding challenges of varying difficulty, practice with real-time feedback, and track your progress—all in one place.
 
 ---
 
 ## 📖 Description
 
-PromptedCode is a full-stack web application designed to help users prepare for coding interviews. It leverages the latest LLMs (Meta-Llama-3-8B-Instruct) to generate unique, multiple-choice coding challenges based on user-selected difficulty. Users can practice, review their challenge history, and manage their daily quota, all with a modern and intuitive UI.
+CodePrep.AI is a full-stack web application designed to help users prepare for coding interviews. It leverages the latest LLMs (Meta-Llama-3-8B-Instruct) to generate unique, multiple-choice coding challenges based on user-selected difficulty. Users can practice, review their challenge history, and manage their daily quota, all with a modern and intuitive UI.
 
 ---
 
 ## 🖼️ Visuals
 
-> **Screenshots**  
-> ![PromptedCode Home](docs/screenshots/home.png)
+> ![CodePrep.AI Home](docs/screenshots/home.png)
 > ![Challenge Example](docs/screenshots/challenge.png)
 > ![History Panel](docs/screenshots/history.png)
 
@@ -57,15 +56,15 @@ PromptedCode is a full-stack web application designed to help users prepare for 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/ethanvillalovoz/PromptedCode-AI-Interviewer.git
-cd PromptedCode-AI-Interviewer
+git clone https://github.com/ethanvillalovoz/codeprep-ai.git
+cd codeprep-ai
 ```
 
 ### 2. Backend Setup
 
 ```bash
-conda create -n llm-codegen python=3.13
-conda activate llm-codegen
+conda create -n codeprep python=3.13
+conda activate codeprep
 pip install -r backend/requirements.txt
 cd backend
 huggingface-cli login
