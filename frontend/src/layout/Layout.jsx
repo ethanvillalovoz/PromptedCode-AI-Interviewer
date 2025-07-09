@@ -9,7 +9,7 @@ export function Layout() {
       {/* App header with title and navigation */}
       <header className="app-header">
         <div className="header-content">
-          <h1>PromptedCode</h1>
+          <h1>CodePrep.AI</h1>
           <nav>
             {/* Show navigation links and user button only when signed in */}
             <SignedIn>

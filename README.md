@@ -1,4 +1,4 @@
-# CodePrep.AI
+# CodePrep.AI: AI Coding Interview Prep
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/ethanvillalovoz/llm-coding-challenge-generator/actions)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
