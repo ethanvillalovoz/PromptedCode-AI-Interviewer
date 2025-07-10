@@ -22,7 +22,7 @@ PromptedCode is a full-stack web application for AI-powered coding interview pre
 graph TD
     A[User] -->|Browser| B[React Frontend]
     B -->|REST API| C[FastAPI Backend]
-    C -->|Prompt| D[LLM (Hugging Face)]
+    C -->|Prompt| D[LLM: Hugging Face]
     C -->|ORM| E[SQLite DB]
     B -->|Auth| F[Clerk]
 ```
