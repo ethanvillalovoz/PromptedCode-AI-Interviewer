@@ -1,11 +1,19 @@
 # CodePrep.AI: AI Coding Interview Prep
 
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/ethanvillalovoz/llm-coding-challenge-generator/actions)
+[![CI/CD Status](https://img.shields.io/github/actions/workflow/status/ethanvillalovoz/codeprep-ai/ci.yml?branch=main&label=CI%2FCD)](https://github.com/ethanvillalovoz/codeprep-ai/actions)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.13-blue.svg)](https://www.python.org/downloads/release/python-3130/)
 [![React](https://img.shields.io/badge/react-18-blue.svg)](https://react.dev/)
 
----
+
+## 🛡️ CI/CD
+
+This repository features automated **CI/CD** workflows powered by GitHub Actions:
+
+- **Continuous Integration (CI):** Automatically installs dependencies and runs build steps for the frontend on every push and pull request to `main`.
+- **Continuous Deployment (CD):** Deploys the application after a successful CI run (customizable in `.github/workflows/cd.yml`).
+
+You can modify the deployment logic in `cd.yml` to fit your hosting provider or infrastructure.
 
 ## 🚀 Introduction
 
